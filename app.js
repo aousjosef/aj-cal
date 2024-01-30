@@ -44,9 +44,15 @@ const manipulate = () => {
   // Variable to store the generated calendar HTML
   let lit = "";
 
+  
+
+
   // Loop to add the last dates of the previous month
   for (let i = dayone; i > 0; i--) {
-    lit += `<li class="inactive">${monthlastdate - i + 1}</li>`;
+    lit += `<li class="inactive test">
+    <span class="center-inside">  ${monthlastdate - i + 1}</span> 
+    <div class="day-has-event">4</div>
+    </li>`;
   }
 
   // Loop to add the dates of the current month
@@ -67,9 +73,14 @@ const manipulate = () => {
     </li>`;
   }
 
+
+
   // Loop to add the first dates of the next month
   for (let i = dayend; i < 6; i++) {
-    lit += `<li class="inactive">${i - dayend + 1}</li>`;
+    lit += `<li class="inactive test">
+    <span class="center-inside">  ${i - dayend + 1}</span> 
+    <div class="day-has-event">4</div>
+    </li>`;
   }
 
   // Update the text of the current date element
