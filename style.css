@@ -72,6 +72,7 @@ header .calendar-current-date {
   display: flex;
   text-align: center;
   align-content: space-around;
+ 
 }
 
 
@@ -79,7 +80,7 @@ header .calendar-current-date {
 .calendar-body .calendar-dates {
 
   height: 100%;
-
+display: flex;
 
 }
 
@@ -153,7 +154,9 @@ header .calendar-current-date {
 
 .specific-day-li-el {
     padding: 1rem 0;
+    
     /* transition: 200ms all; */
+    height: 5.5rem;
 }
 .specific-day-li-el:hover{
    background-color: #f2f2f2;
