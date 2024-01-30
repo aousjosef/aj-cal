@@ -24,6 +24,21 @@ const months = [
   "December",
 ];
 
+const events = [
+  { datetime: "2024-01-15T14:00:00", title: "Event 1" },
+  { datetime: "2024-01-15T16:00:00", title: "Event 2" },
+  { datetime: "2024-01-18T09:00:00", title: "Event 3" },
+  { datetime: "2024-01-20T20:00:00", title: "Event 5" },
+  { datetime: "2024-01-20T20:00:00", title: "Event 4" },
+  { datetime: "2024-01-30T20:00:00", title: "Event 4" },
+  { datetime: "2024-02-01T20:00:00", title: "Event 4" },
+  { datetime: "2024-02-01T20:00:00", title: "Event 4" },
+  
+];
+
+//Count events per day using countEventPerDay function
+const eventCounts = countEventsPerDay(events);
+
 // Function to generate the calendar
 const manipulate = () => {
   // Get the first day of the month
@@ -44,14 +59,29 @@ const manipulate = () => {
   // Variable to store the generated calendar HTML
   let lit = "";
 
-  
-
-
   // Loop to add the last dates of the previous month
   for (let i = dayone; i > 0; i--) {
-    lit += `<li class="inactive test">
-    <span class="center-inside">  ${monthlastdate - i + 1}</span> 
-    <div class="day-has-event">4</div>
+    //prevMonthDay give specific day
+    let prevMonthDay = monthlastdate - i + 1;
+    let prevMonth = month - 1;
+    let prevYear = year;
+    
+    // Handle year transition
+    if (prevMonth < 0) {
+        prevMonth = 11; // December
+        prevYear = year - 1;
+    }
+
+
+    const fullDate = `${prevYear}-${String(prevMonth + 1).padStart(2, '0')}-${String(prevMonthDay).padStart(2, '0')}`;
+    const eventCount = eventCounts[fullDate] || 0;
+    const eventDiv = eventCount > 0 ? `<div class="day-has-event">${eventCount}</div>` : '';
+
+    lit += `<li class="inactive specific-day-li-el" data-day="${prevMonthDay}" data-month="${
+      month - 1
+    }" data-year="${year}">
+    <span class="center-inside">${prevMonthDay}</span>
+    ${eventDiv}
     </li>`;
   }
 
@@ -64,22 +94,40 @@ const manipulate = () => {
       year === new Date().getFullYear()
         ? "active"
         : "";
-    lit += `<li class="test ${isToday}">
 
-    <span class="center-inside">${i}</span> 
 
-    <div class="day-has-event">4</div>
+        const fullDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+        const eventCount = eventCounts[fullDate] || 0;
+        const eventDiv = eventCount > 0 ? `<div class="day-has-event">${eventCount}</div>` : '';
 
-    </li>`;
+    lit += `<li class="specific-day-li-el ${isToday}" data-day="${i}" data-month="${month}" data-year="${year}">
+        <span class="center-inside">${i}</span>
+        ${eventDiv}
+        </li>`;
   }
-
-
 
   // Loop to add the first dates of the next month
   for (let i = dayend; i < 6; i++) {
-    lit += `<li class="inactive test">
-    <span class="center-inside">  ${i - dayend + 1}</span> 
-    <div class="day-has-event">4</div>
+
+    let nextMonthDay = i - dayend + 1;
+    let nextMonth = month + 1;
+    let nextYear = year;
+    
+    // Handle year transition
+    if (nextMonth > 11) {
+        nextMonth = 0; // January
+        nextYear = year + 1;
+    }
+
+    const fullDate = `${nextYear}-${String(nextMonth + 1).padStart(2, '0')}-${String(nextMonthDay).padStart(2, '0')}`;
+    const eventCount = eventCounts[fullDate] || 0;
+    const eventDiv = eventCount > 0 ? `<div class="day-has-event">${eventCount}</div>` : '';
+
+    lit += `<li class="inactive specific-day-li-el" data-day="${nextMonthDay}" data-month="${
+      month + 1
+    }" data-year="${year}">
+    <span class="center-inside">${nextMonthDay}</span>
+    ${eventDiv}
     </li>`;
   }
 
@@ -90,11 +138,25 @@ const manipulate = () => {
   // update the HTML of the dates element
   // with the generated calendar
   day.innerHTML = lit;
+
+  // attaches day to each day
+  document.querySelectorAll(".specific-day-li-el").forEach((li) => {
+    li.addEventListener("click", (e) => {
+      let selectedDay = e.currentTarget.getAttribute("data-day");
+      let selectedMonth = e.currentTarget.getAttribute("data-month");
+      let selectedYear = e.currentTarget.getAttribute("data-year");
+      handleDayClick(
+        parseInt(selectedYear),
+        parseInt(selectedMonth),
+        parseInt(selectedDay)
+      );
+    });
+  });
 };
 
 manipulate();
 
-// Attach a click event listener to each icon
+// Attach a click event listener to each icon of nonth navigation
 prenexIcons.forEach((icon) => {
   // When an icon is clicked
   icon.addEventListener("click", () => {
@@ -123,3 +185,16 @@ prenexIcons.forEach((icon) => {
     manipulate();
   });
 });
+
+const handleDayClick = (year, month, day) => {
+  alert(`You have selected: ${year}-${month + 1}-${day}`);
+};
+
+function countEventsPerDay(events) {
+  const eventCounts = {};
+  events.forEach((event) => {
+    const date = event.datetime.split("T")[0]; // Extract just the date part
+    eventCounts[date] = (eventCounts[date] || 0) + 1;
+  });
+  return eventCounts;
+}

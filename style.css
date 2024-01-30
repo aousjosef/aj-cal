@@ -6,7 +6,7 @@
 
 body {
   display: flex;
-  background: #ef62da;
+  background: #ff7675;
   min-height: 100vh;
   padding: 0 10px;
   align-items: center;
@@ -18,7 +18,7 @@ body {
   max-width: 960px;
   width: 96%;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 1rem;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
   /* border: solid blue 4px; */
 }
@@ -45,7 +45,7 @@ header .calendar-navigation span {
   color: #aeabab;
   font-size: 4rem;
   cursor: pointer;
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 .calendar-navigation span:last-child {
@@ -97,15 +97,13 @@ header .calendar-current-date {
 
 
 
-
+/* event number design */
 .day-has-event {
     color:white;
     font-size: 1.15rem;
     margin-top: 1rem;
     background-color: #8b5cf6;
     border-radius: 30%;
-    /* width: 20%; */
-    /* text-align: center; */
     width: 1.75rem;
     height: 1.75rem;
     font-weight: bold;
@@ -131,34 +129,35 @@ header .calendar-current-date {
 }
 
 .calendar-dates li.active {
-    background-color: #e4e1e1;
+    background-color: #ecf0f1;
     border-radius: 1rem;
     color: black;
-
+    font-weight: bold;
 }
-
+/* 
 .calendar-dates li.active::before {
   background: #8b5cf6;
   border-radius: 1rem;
   padding: 0.5rem;
-}
+} */
 
-.calendar-dates li:not(.active):hover::before {
+/* .calendar-dates li:not(.active):hover::before {
   background: #e4e1e1;
   border-radius: 1rem;
   padding: 0.5rem;
-}
+} */
 
 
 
-.test {
+/* day in li  backkkground and hover effect */
+
+.specific-day-li-el {
     padding: 1rem 0;
-    transition: 200ms all;
+    /* transition: 200ms all; */
 }
-.test:hover{
-   background-color: #e4e1e1;
+.specific-day-li-el:hover{
+   background-color: #f2f2f2;
    border-radius: 1rem;
    color: black;
-   
-    
+
 }
