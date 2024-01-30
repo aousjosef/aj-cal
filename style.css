@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  background: #ef62da;
+  min-height: 100vh;
+  padding: 0 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-container {
+  background: #fff;
+  max-width: 960px;
+  width: 96%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  /* border: solid blue 4px; */
+}
+
+.calendar-container header {
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
+}
+
+header .calendar-navigation {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+/* navigaton arrows */
+header .calendar-navigation span {
+
+  user-select: none;
+  color: #aeabab;
+  font-size: 4rem;
+  cursor: pointer;
+  border-radius: 2rem;
+}
+
+.calendar-navigation span:last-child {
+  margin-right: -10px;
+}
+
+header .calendar-navigation span:hover {
+  background: #f2f2f2;
+}
+
+header .calendar-current-date {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.calendar-body {
+  padding: 50px;
+  height: 70vh;
+}
+
+.calendar-body ul {
+  list-style: none;
+  flex-wrap: wrap;
+  display: flex;
+  text-align: center;
+  align-content: space-around;
+}
+
+
+/* days in month body container */
+.calendar-body .calendar-dates {
+
+  height: 100%;
+
+
+}
+
+/* each day */
+.calendar-body li {
+  width: calc(100% / 7);
+  font-size: 1.7rem;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 3px solid blue; */
+  
+}
+
+
+
+
+.day-has-event {
+    color:white;
+    font-size: 1.15rem;
+    margin-top: 1rem;
+    background-color: #8b5cf6;
+    border-radius: 30%;
+    /* width: 20%; */
+    /* text-align: center; */
+    width: 1.75rem;
+    height: 1.75rem;
+    font-weight: bold;
+}
+
+.calendar-body .calendar-weekdays li {
+  cursor: default;
+  font-weight: 500;
+}
+
+.calendar-body .calendar-dates li {
+  /* margin-top: 30px; */
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  /* border: 3px solid blue; */
+}
+
+
+
+.calendar-dates li.inactive {
+  color: #aaa;
+}
+
+.calendar-dates li.active {
+    background-color: #e4e1e1;
+    border-radius: 1rem;
+    color: black;
+
+}
+
+.calendar-dates li.active::before {
+  background: #8b5cf6;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.calendar-dates li:not(.active):hover::before {
+  background: #e4e1e1;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+
+
+.test {
+    padding: 1rem 0;
+    transition: 200ms all;
+}
+.test:hover{
+   background-color: #e4e1e1;
+   border-radius: 1rem;
+   color: black;
+   
+    
+}
