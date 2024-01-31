@@ -6,19 +6,34 @@
 }
 
 body {
+  --main-bg-color: white;
+  --day-font-size: 1.7rem;
+
   display: flex;
   background: #ff7675;
-  min-height: 100vh;
-  padding: 0 10px;
+ /* height: 50vh; */
   align-items: center;
   justify-content: center;
 }
 
+main{
+  display: flex;
+  width: 1400px;
+}
+
+.right-container {
+
+  background-color: blueviolet;
+  border-radius: 1rem;
+  flex-basis: 50%;
+
+}
+
 .calendar-container {
-  background: blanchedalmond;
+  background: var(--main-bg-color);
   width: 100%;
   border-radius: 1rem;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
 .calendar-container header {
@@ -56,7 +71,7 @@ header .calendar-current-date {
 .calendar-body {
   display: flex;
  flex-direction: column;
-  padding: 4rem;
+padding: 4rem;
 }
 
 
@@ -68,32 +83,28 @@ header .calendar-current-date {
   text-align: center;
   gap: 7px;
   font-weight: 500;
-  font-size: 1.7rem;
+  font-size: var(--day-font-size);
   /* justify-content: space-around; */
 }
 
 .calendar-dates {
-  /* background-color: #ff7675; */
+  
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
   gap: 7px;
   padding-top: 1rem;
+  
 }
 
-/* .calendar-body ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-} */
 
+/* single day layout */
 .specific-day-li-el {
-  padding: 1rem 0;
+ padding: 1rem;
   height: 5.5rem;
   display: flex;
   flex-direction: column;
-  font-size: 1.7rem;
+  font-size: var(--day-font-size);
   align-items: center;
   /* transition: 250ms all; */
 }
@@ -112,7 +123,7 @@ header .calendar-current-date {
   /* border: 3px solid blue; */
 }
 
-/* event number design */
+/* event number design - the small numbers */
 .day-has-event {
   color: white;
   font-size: 1.15rem;
