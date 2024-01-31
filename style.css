@@ -67,7 +67,8 @@ header .calendar-current-date {
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
   gap: 7px;
-  font-weight: semi-bold;
+  font-weight: 500;
+  font-size: 1.7rem;
   /* justify-content: space-around; */
 }
 
@@ -87,7 +88,15 @@ header .calendar-current-date {
   text-align: center;
 } */
 
-
+.specific-day-li-el {
+  padding: 1rem 0;
+  height: 5.5rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.7rem;
+  align-items: center;
+  /* transition: 250ms all; */
+}
 
 /* days in month body container */
 
@@ -95,10 +104,10 @@ header .calendar-current-date {
 /* day list */
 .calendar-body li {
   /* width: 14.28%; */
-  font-size: 1.7rem;
-  color: black;
+
+  /* color: black; */
   /* display: flex; */
-  flex-direction: column;
+
   /* align-items: center; */
   /* border: 3px solid blue; */
 }
@@ -118,7 +127,7 @@ header .calendar-current-date {
 
 .calendar-body .calendar-weekdays li {
   cursor: default;
-  font-weight: 500;
+  
 }
 
 
@@ -153,13 +162,7 @@ header .calendar-current-date {
   /* transition: 5000ms; */
 }
 
-.specific-day-li-el {
-  padding: 1rem 0;
-  height: 5.5rem;
-  display: flex;
-  
-  /* transition: 250ms all; */
-}
+
 .specific-day-li-el:hover {
   background-color: #6332c5;
   border-radius: 1rem;
