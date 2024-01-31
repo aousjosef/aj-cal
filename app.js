@@ -33,6 +33,9 @@ const events = [
   { datetime: "2024-01-30T20:00:00", title: "Event 4" },
   { datetime: "2024-02-01T20:00:00", title: "Event 4" },
   { datetime: "2024-02-01T20:00:00", title: "Event 4" },
+  { datetime: "2024-02-01T20:00:00", title: "Event 4" },
+  { datetime: "2024-02-01T20:00:00", title: "Event 4" },
+  { datetime: "2024-02-01T20:00:00", title: "Event 4" },
 ];
 
 //Count events per day using countEventPerDay function
@@ -168,7 +171,8 @@ const manipulate = () => {
   
 };
 
-manipulate();
+
+
 
 // Attach a click event listener to each icon of nonth navigation
 prenexIcons.forEach((icon) => {
@@ -231,21 +235,30 @@ const handleDayClick = (year, month, day) => {
 
    
 
-   function selectToday() {
+   function initToday() {
     // Get today's date
     const today = new Date();
     const currentDay = today.getDate();
     const currentMonth = today.getMonth();
     const currentYear = today.getFullYear();
-
+    
     // Find today's element in the calendar
+    month = currentMonth;
+    year = currentYear;
+    manipulate(); // This will regenerate the calendar for the current month and year
+
     const todayElement = document.querySelector(`.specific-day-li-el[data-day="${currentDay}"][data-month="${currentMonth}"][data-year="${currentYear}"]`);
     
     if (todayElement) {
+
+   
         // Call selectDay for visual selection
         selectDay(todayElement);
 
         // Then call handleDayClick for any additional actions
         handleDayClick(currentYear, currentMonth, currentDay);
     }
+   
 }
+
+initToday();
