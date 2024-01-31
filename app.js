@@ -85,7 +85,7 @@ const manipulate = () => {
     lit += `<li class="inactive specific-day-li-el" data-day="${prevMonthDay}" data-month="${
       month - 1
     }" data-year="${year}">
-    <span class="center-inside">${prevMonthDay}</span>
+    <span class="">${prevMonthDay}</span>
     ${eventDiv}
     </li>`;
   }
@@ -108,7 +108,7 @@ const manipulate = () => {
       eventCount > 0 ? `<div class="day-has-event">${eventCount}</div>` : "";
 
     lit += `<li class="specific-day-li-el ${isToday}" data-day="${i}" data-month="${month}" data-year="${year}">
-        <span class="center-inside">${i}</span>
+        <span class="">${i}</span>
         ${eventDiv}
         </li>`;
   }
@@ -136,7 +136,7 @@ const manipulate = () => {
     lit += `<li class="inactive specific-day-li-el" data-day="${nextMonthDay}" data-month="${
       month + 1
     }" data-year="${year}">
-    <span class="center-inside">${nextMonthDay}</span>
+    <span class="">${nextMonthDay}</span>
     ${eventDiv}
     </li>`;
   }
