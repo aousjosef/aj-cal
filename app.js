@@ -33,7 +33,6 @@ const events = [
   { datetime: "2024-01-30T20:00:00", title: "Event 4" },
   { datetime: "2024-02-01T20:00:00", title: "Event 4" },
   { datetime: "2024-02-01T20:00:00", title: "Event 4" },
-  
 ];
 
 //Count events per day using countEventPerDay function
@@ -65,17 +64,20 @@ const manipulate = () => {
     let prevMonthDay = monthlastdate - i + 1;
     let prevMonth = month - 1;
     let prevYear = year;
-    
+
     // Handle year transition
     if (prevMonth < 0) {
-        prevMonth = 11; // December
-        prevYear = year - 1;
+      prevMonth = 11; // December
+      prevYear = year - 1;
     }
 
-
-    const fullDate = `${prevYear}-${String(prevMonth + 1).padStart(2, '0')}-${String(prevMonthDay).padStart(2, '0')}`;
+    const fullDate = `${prevYear}-${String(prevMonth + 1).padStart(
+      2,
+      "0"
+    )}-${String(prevMonthDay).padStart(2, "0")}`;
     const eventCount = eventCounts[fullDate] || 0;
-    const eventDiv = eventCount > 0 ? `<div class="day-has-event">${eventCount}</div>` : '';
+    const eventDiv =
+      eventCount > 0 ? `<div class="day-has-event">${eventCount}</div>` : "";
 
     lit += `<li class="inactive specific-day-li-el" data-day="${prevMonthDay}" data-month="${
       month - 1
@@ -95,10 +97,12 @@ const manipulate = () => {
         ? "active"
         : "";
 
-
-        const fullDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
-        const eventCount = eventCounts[fullDate] || 0;
-        const eventDiv = eventCount > 0 ? `<div class="day-has-event">${eventCount}</div>` : '';
+    const fullDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(
+      i
+    ).padStart(2, "0")}`;
+    const eventCount = eventCounts[fullDate] || 0;
+    const eventDiv =
+      eventCount > 0 ? `<div class="day-has-event">${eventCount}</div>` : "";
 
     lit += `<li class="specific-day-li-el ${isToday}" data-day="${i}" data-month="${month}" data-year="${year}">
         <span class="center-inside">${i}</span>
@@ -108,20 +112,23 @@ const manipulate = () => {
 
   // Loop to add the first dates of the next month
   for (let i = dayend; i < 6; i++) {
-
     let nextMonthDay = i - dayend + 1;
     let nextMonth = month + 1;
     let nextYear = year;
-    
+
     // Handle year transition
     if (nextMonth > 11) {
-        nextMonth = 0; // January
-        nextYear = year + 1;
+      nextMonth = 0; // January
+      nextYear = year + 1;
     }
 
-    const fullDate = `${nextYear}-${String(nextMonth + 1).padStart(2, '0')}-${String(nextMonthDay).padStart(2, '0')}`;
+    const fullDate = `${nextYear}-${String(nextMonth + 1).padStart(
+      2,
+      "0"
+    )}-${String(nextMonthDay).padStart(2, "0")}`;
     const eventCount = eventCounts[fullDate] || 0;
-    const eventDiv = eventCount > 0 ? `<div class="day-has-event">${eventCount}</div>` : '';
+    const eventDiv =
+      eventCount > 0 ? `<div class="day-has-event">${eventCount}</div>` : "";
 
     lit += `<li class="inactive specific-day-li-el" data-day="${nextMonthDay}" data-month="${
       month + 1
@@ -152,6 +159,13 @@ const manipulate = () => {
       );
     });
   });
+
+  document.querySelectorAll('.specific-day-li-el').forEach(dayElement => {
+    dayElement.addEventListener('click', () => {
+        selectDay(dayElement);
+    });
+});
+  
 };
 
 manipulate();
@@ -186,9 +200,7 @@ prenexIcons.forEach((icon) => {
   });
 });
 
-const handleDayClick = (year, month, day) => {
-  alert(`You have selected: ${year}-${month + 1}-${day}`);
-};
+
 
 function countEventsPerDay(events) {
   const eventCounts = {};
@@ -197,4 +209,43 @@ function countEventsPerDay(events) {
     eventCounts[date] = (eventCounts[date] || 0) + 1;
   });
   return eventCounts;
+}
+
+
+function selectDay(selectedElement) {
+    // Remove the class from previously selected day
+    const previousSelected = document.querySelector('.selected-day');
+    if (previousSelected) {
+        previousSelected.classList.remove('selected-day');
+    }
+
+    // Add the class to the newly selected day
+    selectedElement.classList.add('selected-day');
+}
+
+
+const handleDayClick = (year, month, day) => {
+    console.log(`You have selected: ${year}-${month + 1}-${day}`);
+   };
+   
+
+   
+
+   function selectToday() {
+    // Get today's date
+    const today = new Date();
+    const currentDay = today.getDate();
+    const currentMonth = today.getMonth();
+    const currentYear = today.getFullYear();
+
+    // Find today's element in the calendar
+    const todayElement = document.querySelector(`.specific-day-li-el[data-day="${currentDay}"][data-month="${currentMonth}"][data-year="${currentYear}"]`);
+    
+    if (todayElement) {
+        // Call selectDay for visual selection
+        selectDay(todayElement);
+
+        // Then call handleDayClick for any additional actions
+        handleDayClick(currentYear, currentMonth, currentDay);
+    }
 }

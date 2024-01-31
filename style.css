@@ -17,9 +17,11 @@ body {
   background: #fff;
   max-width: 960px;
   width: 96%;
-  height: 100%;
+ 
   border-radius: 1rem;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
   /* border: solid blue 4px; */
 }
 
@@ -37,10 +39,8 @@ header .calendar-navigation {
   align-items: center;
 }
 
-
 /* navigaton arrows */
 header .calendar-navigation span {
-
   user-select: none;
   color: #aeabab;
   font-size: 4rem;
@@ -62,8 +62,11 @@ header .calendar-current-date {
 }
 
 .calendar-body {
+  display: flex;  
   padding: 50px;
-  height: 70vh;
+  height: 70%;
+  flex-direction: column;
+ 
 }
 
 .calendar-body ul {
@@ -72,16 +75,13 @@ header .calendar-current-date {
   display: flex;
   text-align: center;
   align-content: space-around;
- 
 }
-
 
 /* days in month body container */
 .calendar-body .calendar-dates {
-
-  height: 100%;
-display: flex;
-
+  /* height: 100%; */
+  display: flex;
+  /* gap: 1px; */
 }
 
 /* each day */
@@ -93,21 +93,18 @@ display: flex;
   flex-direction: column;
   align-items: center;
   /* border: 3px solid blue; */
-  
 }
-
-
 
 /* event number design */
 .day-has-event {
-    color:white;
-    font-size: 1.15rem;
-    margin-top: 1rem;
-    background-color: #8b5cf6;
-    border-radius: 30%;
-    width: 1.75rem;
-    height: 1.75rem;
-    font-weight: bold;
+  color: white;
+  font-size: 1.15rem;
+  margin-top: 1rem;
+  background-color: #8b5cf6;
+  border-radius: 30%;
+  width: 1.75rem;
+  height: 1.75rem;
+  font-weight: bold;
 }
 
 .calendar-body .calendar-weekdays li {
@@ -123,44 +120,66 @@ display: flex;
   /* border: 3px solid blue; */
 }
 
-
-
 .calendar-dates li.inactive {
   color: #aaa;
 }
 
+/* current day date */
 .calendar-dates li.active {
-    background-color: #ecf0f1;
-    border-radius: 1rem;
-    color: black;
-    font-weight: bold;
+  border-radius: 1rem;
+  color: #6332c5;
+  font-weight: bold;
+
 }
-/* 
+
+/* .calendar-dates li::before {
+  position: absolute;
+  content: "";
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 1rem;
+  transform: translate(-50%, -50%);
+
+} */
+
+/* highlights todays date */
 .calendar-dates li.active::before {
-  background: #8b5cf6;
-  border-radius: 1rem;
-  padding: 0.5rem;
-} */
+  /* background-color: #f9f9f9;
+  z-index: 0; */
+  
+}
 
-/* .calendar-dates li:not(.active):hover::before {
-  background: #e4e1e1;
-  border-radius: 1rem;
-  padding: 0.5rem;
-} */
-
-
-
-/* day in li  backkkground and hover effect */
+/* hover effect over day */
+.calendar-dates li:hover::before {
+    background: #6332c5;
+    /* transition: 5000ms; */
+  
+}
 
 .specific-day-li-el {
-    padding: 1rem 0;
-    
-    /* transition: 200ms all; */
-    height: 5.5rem;
+  padding: 1rem 0;
+  height: 5.5rem;
+  /* transition: 250ms all; */
 }
 .specific-day-li-el:hover{
-   background-color: #f2f2f2;
+   background-color: #6332c5;
    border-radius: 1rem;
-   color: black;
+   color: white !important;
+   font-weight: bold;
+  
 
 }
+
+.selected-day {
+   
+    /* Additional styling as needed */
+    font-weight: bold !important;
+    background-color: #6332c5;
+    border-radius: 1rem;    
+    color: white !important;
+}
+
+/* color: #6332c5; */
